@@ -36,9 +36,6 @@
   ghfork = !sh "$HOME/Developer/alexdvance/dotfiles/git-extras/git-ghpull.sh"
   cleanup = !ruby "$HOME/Developer/alexdvance/dotfiles/git-extras/git-cleanup.rb"
 
-[push]
-  default = simple
-
 [color]
   ui = true
 
@@ -77,4 +74,4 @@
 [ghi]
 	token = !security find-internet-password -a alexdvance -s github.com -l 'ghi token' -w
 [pull]
-	rebase = true
+	rebase = false
