@@ -16,7 +16,11 @@ autoload -U colors && colors
 # Load and execute the prompt theming system.
 fpath=("$curr/terminal" $fpath)
 autoload -Uz promptinit && promptinit
+<<<<<<< HEAD
 prompt 'paulmillr'
+=======
+prompt 'slash'
+>>>>>>> 712a42c (Hari - modifying user name)
 
 # ==================================================================
 # = Aliases =

@@ -4,7 +4,7 @@ Colourful & robust OS X configuration files and utilities.
 Installation is done with simple command set:
 
 ```
-curl --silent https://raw.githubusercontent.com/alexdvance/dotfiles/master/install.sh | sh
+curl --silent https://raw.githubusercontent.com/hari-tw/dotfiles/master/install.sh | sh
 ```
 
 ## Additional steps

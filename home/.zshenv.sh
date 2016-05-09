@@ -53,8 +53,12 @@ typeset -gUT INFOPATH infopath
 runserver='python -m SimpleHTTPServer'
 
 # Commonly used directories.
-dev="$HOME/Development"
 pm="$dev"
+dev="$HOME/Developer"
+br="$dev/brunch"
+ch="$dev/chaplinjs"
+com="$dev/com"
+pm="$dev/slash"
 as="$HOME/Library/Application Support"
 
 # Set the the list of directories that cd searches.

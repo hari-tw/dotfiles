@@ -35,6 +35,7 @@
 
   ghfork = !sh "$HOME/Development/dotfiles/git-extras/git-ghpull.sh"
   cleanup = !ruby "$HOME/Development/dotfiles/git-extras/git-cleanup.rb"
+>>>>>>> 712a42c (Hari - modifying user name)
 
 [color]
   ui = true
@@ -55,7 +56,7 @@
   abbrevCommit = true
 
 # URL shorthands
-# gh:alexdvance/dotfiles
+# gh:slash/dotfiles
 [url "git@github.com:"]
   insteadOf = "gh:"
   pushInsteadOf = "gh:"
@@ -74,11 +75,10 @@
 [init]
   templatedir = ~/.git_template
 [ghi]
-  token = !security find-internet-password -a alexdvance -s github.com -l 'ghi token' -w
+	token = !security find-internet-password -a hari-tw -s github.com -l 'ghi token' -w
 [pull]
-  rebase = false
-[push]
-  default = current
+	rebase = true
+
 [credential]
   helper = osxkeychain
   default = matching
