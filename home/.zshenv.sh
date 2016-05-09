@@ -54,7 +54,7 @@ dev="$HOME/Developer"
 br="$dev/brunch"
 ch="$dev/chaplinjs"
 com="$dev/com"
-pm="$dev/alexdvance"
+pm="$dev/slash"
 as="$HOME/Library/Application Support"
 
 # Set the the list of directories that cd searches.

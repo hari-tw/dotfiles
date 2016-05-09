@@ -1,7 +1,7 @@
 # Test file for [fish shell](http://fishshell.com).
 
 set dev $HOME/Development
-set pm $dev/alexdvance
+set pm $dev/slash
 set br $dev/brunch
 set ch $dev/chaplinjs
 set com $dev/com
