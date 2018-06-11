@@ -1,9 +1,9 @@
 [user]
-	name = Alex Vance
-	email = alex.vance@mequilibrium.com
+	name = Hari Balamani
+	email = harib@thoughtworks.com
 
 [github]
-  user = alexmeq
+  user = hari-tw
 
 [alias]
   br = branch
@@ -40,7 +40,7 @@
   ui = true
 
 [core]
-  editor = subl
+  editor = code
   excludesfile = ~/.gitignore
   #pager = diff-highlight | less -r
 
