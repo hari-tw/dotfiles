@@ -29,7 +29,7 @@ end
 
 function edit
   set dir $argv[1]
-  subl $dir
+  sublime $dir
 end
 
 # TODO: add ram, hist, zip-pass, pack-tar, unpack-tar

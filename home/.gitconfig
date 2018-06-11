@@ -1,9 +1,10 @@
 [user]
-	name = Alex Vance
-	email = alexdvance@gmail.com
+
+	name = Hari Balamani
+	email = harib@thoughtworks.com
 
 [github]
-  user = alexdvance
+  user = hari-tw
 
 [alias]
   br = branch
@@ -41,7 +42,7 @@
   ui = true
 
 [core]
-  editor = subl
+  editor = code
   excludesfile = ~/.gitignore
   #pager = diff-highlight | less -r
 

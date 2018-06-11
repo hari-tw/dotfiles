@@ -24,9 +24,3 @@ for location in $(find home -name '.*'); do
   link "$dotfiles/$location" "$HOME/$file"
 done
 
-if [[ `uname` == 'Darwin' ]]; then
-  link "$dotfiles/sublime/Packages/User/Preferences.sublime-settings" "$HOME/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings"
-fi
-
-# Add subl command line tool to path
-ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/
