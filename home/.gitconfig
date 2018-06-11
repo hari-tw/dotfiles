@@ -24,17 +24,17 @@
   discard = checkout -- .
   rmtag = "!sh -c 'git tag -d $1; git push origin :refs/tags/$1'"
 
-  changelog = !sh "$HOME/Developer/slash/dotfiles/git-extras/git-changelog.sh"
-  rstatus   = !zsh "$HOME/Developer/slash/dotfiles/git-extras/git-rstatus.sh"
-  release   = !sh "$HOME/Developer/slash/dotfiles/git-extras/git-release.sh"
-  setup     = !zsh "$HOME/Developer/slash/dotfiles/git-extras/git-setup.sh"
-  summary   = !zsh "$HOME/Developer/slash/dotfiles/git-extras/git-summary.sh"
-  delete-branch = !sh "$HOME/Developer/slash/dotfiles/git-extras/git-delete-branch.sh"
+  changelog = !sh "$HOME/Developer/delta/dotfiles/git-extras/git-changelog.sh"
+  rstatus   = !zsh "$HOME/Developer/delta/dotfiles/git-extras/git-rstatus.sh"
+  release   = !sh "$HOME/Developer/delta/dotfiles/git-extras/git-release.sh"
+  setup     = !zsh "$HOME/Developer/delta/dotfiles/git-extras/git-setup.sh"
+  summary   = !zsh "$HOME/Developer/delta/dotfiles/git-extras/git-summary.sh"
+  delete-branch = !sh "$HOME/Developer/delta/dotfiles/git-extras/git-delete-branch.sh"
 
   pr = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1; } ; f"
 
-  ghfork = !sh "$HOME/Developer/slash/dotfiles/git-extras/git-ghpull.sh"
-  cleanup = !ruby "$HOME/Developer/slash/dotfiles/git-extras/git-cleanup.rb"
+  ghfork = !sh "$HOME/Developer/delta/dotfiles/git-extras/git-ghpull.sh"
+  cleanup = !ruby "$HOME/Developer/delta/dotfiles/git-extras/git-cleanup.rb"
 
 [color]
   ui = true
@@ -55,7 +55,7 @@
   abbrevCommit = true
 
 # URL shorthands
-# gh:slash/dotfiles
+# gh:delta/dotfiles
 [url "git@github.com:"]
   insteadOf = "gh:"
   pushInsteadOf = "gh:"

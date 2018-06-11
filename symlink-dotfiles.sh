@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dev="$HOME/Developer"
-dotfiles="$dev/slash/dotfiles"
+dotfiles="$dev/delta/dotfiles"
 
 if [[ -d "$dotfiles" ]]; then
   echo "Symlinking dotfiles from $dotfiles"
