@@ -1,7 +1,12 @@
 #!/bin/bash
 
+<<<<<<< HEAD
 dev="$HOME/Development"
 dotfiles="$dev/dotfiles"
+=======
+dev="$HOME/Developer"
+dotfiles="$dev/delta/dotfiles"
+>>>>>>> 46f12ab (changing the default path to delta)
 
 if [[ -d "$dotfiles" ]]; then
   echo "Symlinking dotfiles from $dotfiles"
