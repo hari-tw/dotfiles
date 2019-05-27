@@ -35,10 +35,10 @@ if [[ `uname` == 'Darwin' ]]; then
   fi
 
   echo 'Tweaking OS X...'
-    source 'etc/osx.sh'
+    source '/Users/delta/Developer/delta/dotfiles/etc/osx.sh'
 fi
 
-echo 'Symlinking config files...'
-  source 'bin/symlink-dotfiles.sh'
+# echo 'Symlinking config files...'
+#   source '/Users/delta/Developer/delta/dotfiles/symlink-dotfiles.sh'
 
 popd
