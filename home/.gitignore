@@ -22,4 +22,11 @@
 *.pyc
 /tmp
 
+
+# jetbrains
+
+
+.idea
+*.iml
+
 # Project stuff

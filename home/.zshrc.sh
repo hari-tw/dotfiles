@@ -23,6 +23,8 @@ prompt 'delta'
 # = Aliases =
 # ==================================================================
 
+alias typora="open -a typora"
+
 alias -g f2='| head -n 2'
 alias -g f10='| head -n 10'
 alias -g l10='| tail -n 10'
@@ -38,8 +40,11 @@ alias lint=jshint
 # Faster NPM for europeans.
 alias npme='npm --registry http://registry.npmjs.eu'
 
+<<<<<<< HEAD
 # Setup localhost for folder
 alias runserver='python -m SimpleHTTPServer'
+=======
+>>>>>>> 9976bdc (Fixing a local items)
 
 # Some OS X-only stuff.
 if [[ "$OSTYPE" == darwin* ]]; then
@@ -65,6 +70,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
   # Process grep should output full paths to binaries.
   alias pgrep='pgrep -fli'
+
 else
   # Process grep should output full paths to binaries.
   alias pgrep='pgrep -fl'
@@ -407,3 +413,11 @@ function preview() {
   [[ -z "$item" ]] && item='.'
   open $1 -a 'Preview'
 }
+
+eval "$(nodenv init -)"
+
+alias docker-default='eval $(docker-machine env default)'
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+

@@ -1,6 +1,6 @@
 [user]
 	name = Hari Balamani
-	email = harib@thoughtworks.com
+	email = hari.balamani@xero.com
 
 [github]
   user = hari-tw
@@ -10,8 +10,9 @@
   cb = "!sh -c 'git branch $1 && git ch $1' -"
   ctb = "!sh -c 'git cb topics/$1' -"
 
-  ci = commit
-  ch = checkout
+  cm = commit
+  co = checkout
+  amd = commit --amend
   fc = commit -am 'Initial commit.'
   d = diff
   st = status --short
@@ -42,6 +43,7 @@
 [core]
   editor = code
   excludesfile = ~/.gitignore
+	autocrlf = false
   #pager = diff-highlight | less -r
 
 [format]
