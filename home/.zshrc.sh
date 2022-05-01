@@ -40,11 +40,8 @@ alias lint=jshint
 # Faster NPM for europeans.
 alias npme='npm --registry http://registry.npmjs.eu'
 
-<<<<<<< HEAD
 # Setup localhost for folder
 alias runserver='python -m SimpleHTTPServer'
-=======
->>>>>>> 9976bdc (Fixing a local items)
 
 # Some OS X-only stuff.
 if [[ "$OSTYPE" == darwin* ]]; then
