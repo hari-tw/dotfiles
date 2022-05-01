@@ -1,6 +1,5 @@
 [user]
 	name = Hari Balamani
-	email = hari.balamani@xero.com
 
 [github]
   user = hari-tw
@@ -83,3 +82,9 @@
 [credential]
   helper = osxkeychain
   default = matching
+  
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
