@@ -67,11 +67,17 @@
   pushInsteadOf = "gist:"
   pushInsteadOf = "git://gist.github.com/"
 
+[merge]
+  tool = ksdiff
 [mergetool]
-	keepBackup = false
+  keepBackup = false
 [init]
-	templatedir = ~/.git_template
+  templatedir = ~/.git_template
 [ghi]
 	token = !security find-internet-password -a hari-tw -s github.com -l 'ghi token' -w
 [pull]
 	rebase = true
+
+[credential]
+  helper = osxkeychain
+  default = matching

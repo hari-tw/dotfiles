@@ -1,11 +1,25 @@
 # Dotfiles
 Colourful & robust OS X configuration files and utilities.
 
-Installation is done with simple command set (see “building system from scratch” for setup of new system):
+Installation is done with simple command set:
 
 ```
 curl --silent https://raw.githubusercontent.com/hari-tw/dotfiles/master/install.sh | sh
 ```
+
+## Additional steps
+* Install XCode & its Command Line Tools.
+* Install "Source Code Pro" font from fonts folder.
+* Install trash command `brew install trash`
+* Copy Sublime Text icon in sublime folder into Get Info modal of Sublime Text application ([credit](https://dribbble.com/shots/1840393-Sublime-Text-Yosemite-Icon?list=searches&tag=sublime_text))
+* If git modules failed to download, run:
+```
+git submodule update --init --recursive
+```
+
+## For new computer
+* Run `sh bootstrap-new-system.sh`
+* Insert proper hosts from `etc/hosts` to system’s `/etc/hosts`.
 
 ## Features
 
@@ -50,17 +64,6 @@ Shell (zsh):
 * `sublime` — sublime text 2 theme & settings
 * `terminal` — terminal theme & prompt
 
-## Building system from scratch (reminder)
-
-* Install "Source Code Pro" font.
-* Install XCode & its Command Line Tools.
-* Change Terminal.app theme to `terminal/paulmillr.terminal`.
-* Change default shell to ZSH: `chsh -s /bin/zsh`.
-* Insert proper hosts from `etc/hosts` to system’s `/etc/hosts`.
-* Create `~/Development/`
-* Clone this project (dotfiles **RECURSIVELY** `--recursive`) and run `sh bootstrap-new-system.sh`
-* Download the Yosemite style [Sublime Text icon](https://dribbble.com/shots/1840393-Sublime-Text-Yosemite-Icon?list=searches&tag=sublime_text) (instructions on usage are included in download)
-* Install Sublime packages with Package Control: "Seti UI"
 
 ## License
 

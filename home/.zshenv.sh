@@ -49,7 +49,11 @@ fi
 typeset -gU cdpath fpath mailpath manpath path
 typeset -gUT INFOPATH infopath
 
+# Aliases
+runserver='python -m SimpleHTTPServer'
+
 # Commonly used directories.
+pm="$dev"
 dev="$HOME/Developer"
 br="$dev/brunch"
 ch="$dev/chaplinjs"

@@ -2,12 +2,12 @@
 
 # A simple script for setting up OSX dev environment.
 
-dev="$HOME/Developer"
+dev="$HOME/Development"
 pushd .
 mkdir -p $dev
 cd $dev
 
-echo 'Enter new hostname of the machine (e.g. macbook-paulmillr)'
+echo 'Enter new hostname of the machine (e.g. macbook-alexdvance)'
   read hostname
   echo "Setting new hostname to $hostname..."
   scutil --set HostName "$hostname"

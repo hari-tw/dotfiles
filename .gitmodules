@@ -4,3 +4,9 @@
 [submodule "terminal/highlight"]
 	path = terminal/highlight
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "sublime/Packages/Seti_UI"]
+	path = sublime/Packages/Seti_UI
+	url = https://github.com/ctf0/Seti_ST3.git
+[submodule "sublime/Packages/Seti_UX"]
+	path = sublime/Packages/Seti_UX
+	url = https://github.com/ctf0/Seti_UX.git

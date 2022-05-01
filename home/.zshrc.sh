@@ -3,6 +3,7 @@
 curr="$pm/dotfiles"
 
 # Load main files.
+source ~/.bash_profile
 # echo "Load start\t" $(gdate "+%s-%N")
 source "$curr/terminal/startup.sh"
 # echo "$curr/terminal/startup.sh"
@@ -15,7 +16,8 @@ autoload -U colors && colors
 # Load and execute the prompt theming system.
 fpath=("$curr/terminal" $fpath)
 autoload -Uz promptinit && promptinit
-prompt 'paulmillr'
+
+prompt 'delta'
 
 # ==================================================================
 # = Aliases =
@@ -35,6 +37,9 @@ alias lint=jshint
 
 # Faster NPM for europeans.
 alias npme='npm --registry http://registry.npmjs.eu'
+
+# Setup localhost for folder
+alias runserver='python -m SimpleHTTPServer'
 
 # Some OS X-only stuff.
 if [[ "$OSTYPE" == darwin* ]]; then
@@ -72,6 +77,8 @@ alias gr='git rm'
 
 alias gf='git fetch'
 alias gu='git pull'
+alias guo='git pull origin'
+alias gp='git push'
 alias gup='git pull && git push'
 alias ghu='git pull hy'
 alias ghp='git push hy'
@@ -97,8 +104,7 @@ function cherry() {
   done
 }
 alias gcher='cherry'
-
-alias gp='git push'
+alias gpick='git cherry-pick'
 
 function gcp() {
   args=$@
