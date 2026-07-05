@@ -31,6 +31,8 @@ brew "fzf"
 brew "gemini-cli"
 # GitHub command-line tool
 brew "gh"
+# Small git utilities
+brew "git-extras"
 # Git extension for versioning large files
 brew "git-lfs"
 # Open source programming language to build simple/reliable/efficient software
@@ -45,6 +47,8 @@ brew "jq"
 brew "k3d"
 # Modern load testing tool, using Go and JavaScript
 brew "k6"
+# Tool that can switch between kubectl contexts easily and create aliases
+brew "kubectx"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
 # Version of the SSL/TLS protocol forked from OpenSSL
@@ -73,6 +77,8 @@ brew "rtk"
 brew "rust"
 # Cross-shell prompt for astronauts
 brew "starship"
+# Tail multiple Kubernetes pods & their containers
+brew "stern"
 # Scripting with easy zero-conf dependency imports
 brew "swift-sh"
 # Tool to enforce Swift style and conventions

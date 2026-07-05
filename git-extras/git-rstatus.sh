@@ -1,12 +1,13 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
-autoload colors && colors
+autoload -U colors && colors
 
-ls -1 | while read line; do
-  cd $line
+for dir in */; do
+  [[ -d "$dir/.git" ]] || continue
+  cd "$dir"
   line_count=$(git status --porcelain 2> /dev/null | wc -l)
   if [[ "$line_count" -ne "0" ]]; then
-    echo "${fg[blue]}$line$reset_color:"
+    echo "${fg[blue]}${dir%/}${reset_color}:"
     git status --short
     echo ""
   fi

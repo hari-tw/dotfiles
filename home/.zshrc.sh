@@ -385,6 +385,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 autoload -U +X compinit
 compinit
 
+source /opt/homebrew/opt/git-extras/share/git-extras/git-extras-completion.zsh
+
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
