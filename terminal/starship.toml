@@ -1,9 +1,14 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+# Default is 500ms - too aggressive for slower commands (e.g. `helm version`
+# in a chart dir timed out and rendered blank at the default).
+command_timeout = 1000
+
 format = """
 [](red)\
 $os\
 $username\
+$hostname\
 [](bg:peach fg:red)\
 $directory\
 [](bg:yellow fg:peach)\
@@ -32,12 +37,13 @@ $conda\
 $claude_model\
 $claude_context\
 $claude_cost\
-[](fg:mauve bg:lavender)\
-$time\
-[ ](fg:lavender)\
-$cmd_duration\
 $line_break\
 $character"""
+
+right_format = """
+[$time](fg:lavender)\
+ [$cmd_duration](fg:lavender)\
+"""
 
 palette = 'catppuccin_mocha'
 
@@ -72,6 +78,12 @@ show_always = true
 style_user = "bg:red fg:crust"
 style_root = "bg:red fg:crust"
 format = '[ $user]($style)'
+
+[hostname]
+ssh_only = true
+style = "bg:red fg:crust"
+format = '[@$hostname]($style)'
+disabled = false
 
 [directory]
 style = "bg:peach fg:crust"
