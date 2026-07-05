@@ -31,13 +31,11 @@ $gcloud\
 $kubernetes\
 $docker_context\
 $helm\
-[](fg:teal bg:sapphire)\
 $conda\
-[](fg:sapphire bg:mauve)\
 $claude_model\
 $claude_context\
 $claude_cost\
-[](fg:mauve bg:lavender)\
+[](fg:teal bg:lavender)\
 $time\
 [ ](fg:lavender)\
 $line_break\
@@ -199,22 +197,22 @@ disabled = false
 
 [claude_model]
 symbol = "🤖 "
-style = "bg:mauve"
-format = '[[ $symbol$model ](fg:crust bg:mauve)]($style)'
+style = "bg:teal"
+format = '[[ $symbol$model ](fg:crust bg:teal)]($style)'
 disabled = false
 
 [claude_context]
-format = '[[$gauge $percentage ](fg:crust bg:mauve)]'
+format = '[[$gauge $percentage ](fg:crust bg:teal)]'
 disabled = false
 
 [claude_cost]
 symbol = "💰 "
-format = '[[$symbol(\$$cost) ](fg:crust bg:mauve)]'
+format = '[[$symbol(\$$cost) ](fg:crust bg:teal)]'
 disabled = false
 
 [conda]
 symbol = "  "
-style = "fg:crust bg:sapphire"
+style = "fg:crust bg:teal"
 format = '[$symbol$environment ]($style)'
 ignore_base = false
 
