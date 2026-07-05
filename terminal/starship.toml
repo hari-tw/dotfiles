@@ -37,7 +37,7 @@ $conda\
 $claude_model\
 $claude_context\
 $claude_cost\
-[](fg:mauve bg:lavender)\
+[](fg:mauve bg:lavender)\
 $time\
 [ ](fg:lavender)\
 $line_break\
