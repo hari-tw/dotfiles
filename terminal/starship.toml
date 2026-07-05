@@ -37,12 +37,13 @@ $conda\
 $claude_model\
 $claude_context\
 $claude_cost\
+[](fg:mauve bg:lavender)\
+$time\
 $line_break\
 $character"""
 
 right_format = """
-[$time](fg:lavender)\
- [$cmd_duration](fg:lavender)\
+[$cmd_duration](fg:lavender)\
 """
 
 palette = 'catppuccin_mocha'
