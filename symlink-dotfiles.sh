@@ -1,14 +1,9 @@
 #!/bin/bash
 
-dev="$HOME/Developer"
-dotfiles="$dev/delta/dotfiles"
+dotfiles="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$dotfiles"
 
-if [[ -d "$dotfiles" ]]; then
-  echo "Symlinking dotfiles from $dotfiles"
-else
-  echo "$dotfiles does not exist"
-  exit 1
-fi
+echo "Symlinking dotfiles from $dotfiles"
 
 link() {
   from="$1"
@@ -22,5 +17,11 @@ for location in $(find home -name '.*'); do
   file="${location##*/}"
   file="${file%.sh}"
   link "$dotfiles/$location" "$HOME/$file"
+done
+
+# Warp reads themes from its own data directory, not $HOME directly.
+mkdir -p "$HOME/.warp/themes"
+for theme in "$dotfiles"/terminal/catppuccin-warp/*.yml; do
+  link "$theme" "$HOME/.warp/themes/$(basename "$theme")"
 done
 
