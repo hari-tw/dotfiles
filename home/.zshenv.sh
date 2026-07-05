@@ -10,8 +10,8 @@ fi
 
 # Editors.
 # --------
-export EDITOR='/usr/local/bin/code'
-export VISUAL='/usr/local/bin/code'
+export EDITOR='cursor --wait'
+export VISUAL='cursor --wait'
 export PAGER='less'
 
 # Language.
@@ -49,15 +49,8 @@ fi
 typeset -gU cdpath fpath mailpath manpath path
 typeset -gUT INFOPATH infopath
 
-# Aliases
-runserver='python -m SimpleHTTPServer'
-
 # Commonly used directories.
-pm="$dev"
 dev="$HOME/Developer"
-br="$dev/brunch"
-ch="$dev/chaplinjs"
-com="$dev/com"
 pm="$dev/delta"
 as="$HOME/Library/Application Support"
 

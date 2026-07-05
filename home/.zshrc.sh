@@ -3,7 +3,7 @@
 curr="$pm/dotfiles"
 
 # Load main files.
-source ~/.bash_profile
+[[ -f ~/.bash_profile ]] && source ~/.bash_profile
 # echo "Load start\t" $(gdate "+%s-%N")
 source "$curr/terminal/startup.sh"
 # echo "$curr/terminal/startup.sh"
@@ -13,15 +13,24 @@ source "$curr/terminal/highlight.sh"
 
 autoload -U colors && colors
 
-# Load and execute the prompt theming system.
-fpath=("$curr/terminal" $fpath)
-autoload -Uz promptinit && promptinit
-
-prompt 'delta'
+# Prompt theme (Catppuccin Mocha, matches the iTerm2 color scheme).
+export STARSHIP_CONFIG="$curr/terminal/starship.toml"
+eval "$(starship init zsh)"
 
 # ==================================================================
 # = Aliases =
 # ==================================================================
+
+# Modern CLI replacements (overrides the plain-ls aliases from
+# terminal/startup.sh, sourced earlier). rg/fd are intentionally left
+# unaliased over grep/find so muscle memory still works when SSH'd into
+# a box that doesn't have them installed.
+alias ls='eza --icons --group-directories-first'
+alias ll='eza -lah --git --icons'
+alias la='eza -lah --git --icons'
+alias cat='bat --paging=never'
+eval "$(zoxide init zsh --cmd cd)"
+eval "$(fzf --zsh)"
 
 alias typora="open -a typora"
 
@@ -40,9 +49,6 @@ alias lint=jshint
 # Faster NPM for europeans.
 alias npme='npm --registry http://registry.npmjs.eu'
 
-# Setup localhost for folder
-alias runserver='python -m SimpleHTTPServer'
-
 # Some OS X-only stuff.
 if [[ "$OSTYPE" == darwin* ]]; then
   # Short-cuts for copy-paste.
@@ -58,15 +64,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
   # Lock current session and proceed to the login screen.
   alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 
-  # Sniff network info.
-  alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
-
-  # Developer tools shortcuts.
-  alias tower='gittower .'
-  alias t='gittower .'
-
-  # Process grep should output full paths to binaries.
-  alias pgrep='pgrep -fli'
+  # Cursor personal account
+  alias cursorp='open -a CursorP'
 
 else
   # Process grep should output full paths to binaries.
@@ -128,25 +127,14 @@ function commits() {
 
 # Dev short-cuts.
 
-# Brunch.
-alias bb='brunch build'
-alias bbp='brunch build --production'
-alias bw='brunch watch'
-alias bws='brunch watch --server'
-
 alias nr='npm run'
 
 # Package managers.
-alias bi='bower install'
-alias bis='bower install --save'
 alias ni='npm install'
 alias nis='npm install --save'
-alias nibi='npm install & bower install'
-alias nibir='rm -rf {bower_components,node_modules} && npm install && bower install'
 alias ns='npm search'
 
 alias jk='jekyll serve --watch' # lol jk
-# alias serve='python -m SimpleHTTPServer'
 alias serve='http-server' # npm install http-server
 alias server='http-server'
 
@@ -154,16 +142,6 @@ alias server='http-server'
 alias bx='bundle exec'
 alias bex='bundle exec'
 alias migr='bundle exec rake db:migrate'
-
-# Nginx short-cuts.
-alias ngup='sudo nginx'
-alias ngdown='sudo nginx -s stop'
-alias ngre='sudo nginx -s stop && sudo nginx'
-alias nglog='tail -f /usr/local/var/log/nginx/access.log'
-alias ngerr='tail -f /usr/local/var/log/nginx/error.log'
-
-# Checks whether connection is up.
-alias net="ping ya.ru | grep -E --only-match --color=never '[0-9\.]+ ms'"
 
 # Pretty print json
 alias json='python -m json.tool'
@@ -383,19 +361,6 @@ function openfiles() {
   sudo dtrace -n 'syscall::open*:entry { printf("%s %s",execname,copyinstr(arg0)); }'
 }
 
-# 4 lulz.
-function compute() {
-  while true; do head -n 100 /dev/urandom; sleep 0.1; done \
-    | hexdump -C | grep "ca fe"
-}
-
-# Load 8 cores at once.
-function maxcpu() {
-  dn=/dev/null
-  yes > $dn & yes > $dn & yes > $dn & yes > $dn &
-  yes > $dn & yes > $dn & yes > $dn & yes > $dn &
-}
-
 # $ retry ping google.com
 function retry() {
   echo Retrying "$@"
@@ -411,10 +376,56 @@ function preview() {
   open $1 -a 'Preview'
 }
 
-eval "$(nodenv init -)"
 
 alias docker-default='eval $(docker-machine env default)'
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 
+autoload -U +X compinit
+compinit
+
+export NVM_DIR=~/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# place this after nvm initialization!
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+      nvm use
+    fi
+  elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+
+
+path+=('/Applications/WebStorm.app/Contents/MacOS')
+path+=('/Applications/Rider.app/Contents/MacOS')
+
+
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+
+source '/opt/homebrew/opt/aws-sso-tools/bin/aws-sso.sh'
+
+# Added by Antigravity
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+# Claude Code profiles
+alias claude-personal="CLAUDE_CONFIG_DIR=~/.claude-personal command claude"
+alias claude-work="CLAUDE_CONFIG_DIR=~/.claude-work command claude"
+
+# Disable bare `claude` to avoid accidental wrong-account usage
+alias claude='echo "Use claude-work or claude-personal"'
+export PATH="$HOME/.local/bin:$PATH"

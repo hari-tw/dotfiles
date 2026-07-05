@@ -488,11 +488,6 @@ else
   alias topm='top -o vsize'
 fi
 
-# Miscellaneous
-
-# Serves a directory via HTTP.
-alias http-serve='python -m SimpleHTTPServer'
-
 #
 # Functions
 #
