@@ -30,3 +30,5 @@
 *.iml
 
 # Project stuff
+
+**/.claude/settings.local.json

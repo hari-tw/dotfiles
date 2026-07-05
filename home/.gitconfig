@@ -1,5 +1,9 @@
 [user]
 	name = Hari Balamani
+	email = prabhu.hari.b@gmail.com
+
+[includeIf "gitdir:~/Projects/**"]
+	path = ~/.gitconfig-work
 
 [github]
   user = hari-tw
@@ -40,9 +44,10 @@
   ui = true
 
 [core]
-  editor = code
+  editor = cursor --wait
   excludesfile = ~/.gitignore
 	autocrlf = false
+	compression = 0
   #pager = diff-highlight | less -r
 
 [format]
@@ -88,3 +93,6 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[http]
+	postBuffer = 524288000
+	version = HTTP/1.1
