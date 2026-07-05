@@ -49,12 +49,9 @@ Shell (zsh):
     * Opinionated `git log`, `git graph`
     * `gcp` for fast `git commit -m ... && git push`
     * `git pr <pull-req> [origin]` for fetching pull request branches
-    * `git cleanup` — clean up merged git branches. Very useful if
-    you’re doing github pull requests in topic branches.
-    * `git summary` — outputs commit email statistics.
-    * `git release` — save changes, tag commit. If used on node.js project, also push to npm.
     * `git url` - opens GitHub repo for current git repo.
-    * `git-changelog`, `git-setup` etc.
+    * `git rstatus` — scans subdirectories and reports which repos have uncommitted changes (bespoke, no upstream equivalent)
+    * The real [`git-extras`](https://github.com/tj/git-extras) (installed via `Brewfile`) provides `git summary`, `git changelog`, `git release`, `git setup`, `git delete-branch`, `git delete-merged-branches` (aliased to `git cleanup`), `git obliterate`, `git fork`, `git standup`, `git effort`, and more — no alias wiring needed, git auto-discovers them
 * [homesick](https://github.com/technicalpickles/homesick) /
   [homeshick](https://github.com/andsens/homeshick)-compatible
 
@@ -81,7 +78,7 @@ Why cloud/conda/claude share one segment instead of three: each segment's transi
 ## Structure
 * `Brewfile` — everything installed via Homebrew; run `brew bundle install --file=Brewfile`
 * `etc` — various stuff like osx text substitutions / hosts backup
-* `git-extras` — useful git functions, defined in `home/gitconfig`. Don't forget to change your git author to a proper name.
+* `git-extras` — just `git-rstatus.sh` now (bespoke multi-repo status scanner); everything else comes from the real `git-extras` package via `Brewfile`. Don't forget to change your git author to a proper name.
 * `home` — files that are symlinked to `$HOME` directory
 * `terminal` — terminal theme & prompt: `catppuccin/` (iTerm2 color schemes), `catppuccin-warp/` (Warp themes, symlinked into `~/.warp/themes/`), `starship.toml` (prompt config), plus completion/syntax-highlighting submodules
 
