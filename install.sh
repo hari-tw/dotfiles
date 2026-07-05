@@ -5,4 +5,4 @@ mkdir -p $dir
 cd $dir
 git clone --recursive https://github.com/hari-tw/dotfiles.git
 cd dotfiles
-sudo bash symlink-dotfiles.sh
+bash symlink-dotfiles.sh
