@@ -58,6 +58,26 @@ Shell (zsh):
 * [homesick](https://github.com/technicalpickles/homesick) /
   [homeshick](https://github.com/andsens/homeshick)-compatible
 
+## Prompt
+
+Starship (`terminal/starship.toml`), `catppuccin-powerline` preset, Catppuccin Mocha palette. Left-to-right, one colored chip per segment:
+
+| Segment | Color | Shows |
+|---|---|---|
+| user/host | red | Username, plus `@hostname` — but only during an SSH session (silent on local machines) |
+| directory | peach | Current path, truncated to 3 levels |
+| git | yellow | Branch name + status (`!` modified, `↑`/`↓` ahead/behind, etc.) — only inside a git repo |
+| languages | green | Detected runtime version (Node, Python, Rust, Go, Java, Kotlin, Haskell, PHP, C) — only in a matching project |
+| cloud/infra/claude | teal | `aws` (only when `AWS_PROFILE` is set), `kubernetes` (only in dirs with `Chart.yaml`/`kustomization.yaml`/`skaffold.yaml` or a `k8s`/`kubernetes`/`manifests` folder), `docker_context` (only with a Dockerfile/compose file present), `helm` (only with `Chart.yaml`/`helmfile.yaml`), `conda`, and Claude Code's `claude_model`/`claude_context`/`claude_cost` — all merged into one segment on purpose, see below |
+| time | lavender | Current time, always shown |
+| *(right edge)* | lavender | `cmd_duration` — only after a command that took a while |
+
+`gcloud` exists in the config but is **disabled** — Starship can only gate it by environment variable (not by directory, unlike the others above), and gcloud CLI doesn't set one that means "actively doing GCP work." Left on, it would show on every single prompt forever after one `gcloud auth login`. Flip `disabled = false` in `[gcloud]` if you want it back anyway.
+
+Why cloud/conda/claude share one segment instead of three: each segment's transition arrow prints unconditionally, regardless of whether the modules inside it have anything to show. Outside actual infra/Python/Claude work, all of those modules are simultaneously empty most of the time — three separate segments meant three consecutive "empty" arrows with nothing between them. One shared segment cuts that down to one arrow in, one arrow out. Starship doesn't support fully conditional inter-segment arrows without much more complex per-module format surgery, so this reduces the effect rather than eliminating it entirely.
+
+`command_timeout` is bumped to 1000ms (Starship's default 500ms is too aggressive — `helm version` alone can exceed it and render blank).
+
 ## Structure
 * `Brewfile` — everything installed via Homebrew; run `brew bundle install --file=Brewfile`
 * `etc` — various stuff like osx text substitutions / hosts backup
