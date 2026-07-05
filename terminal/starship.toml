@@ -20,9 +20,19 @@ $java\
 $kotlin\
 $haskell\
 $python\
-[](fg:green bg:sapphire)\
+[](fg:green bg:teal)\
+$aws\
+$gcloud\
+$kubernetes\
+$docker_context\
+$helm\
+[](fg:teal bg:sapphire)\
 $conda\
-[](fg:sapphire bg:lavender)\
+[](fg:sapphire bg:mauve)\
+$claude_model\
+$claude_context\
+$claude_cost\
+[](fg:mauve bg:lavender)\
 $time\
 [ ](fg:lavender)\
 $cmd_duration\
@@ -136,9 +146,57 @@ style = "bg:green"
 format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:crust bg:green)]($style)'
 
 [docker_context]
-symbol = ""
-style = "bg:sapphire"
-format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
+symbol = " "
+style = "bg:teal"
+format = '[[ $symbol( $context) ](fg:crust bg:teal)]($style)'
+disabled = false
+
+[aws]
+symbol = "  "
+style = "bg:teal"
+format = '[[ $symbol($profile )(\($region\) ) ](fg:crust bg:teal)]($style)'
+disabled = false
+
+[gcloud]
+symbol = "  "
+style = "bg:teal"
+format = '[[ $symbol$account(@$domain)(\($region\)) ](fg:crust bg:teal)]($style)'
+# Starship's gcloud module can only be gated by env vars, not directory/files
+# (unlike docker_context/kubernetes/helm) - and gcloud CLI doesn't set one
+# that indicates "actively doing GCP work" in normal use. It would show on
+# every prompt once `gcloud auth login` has ever run, so leaving it off by
+# default. Toggle to false if you want it back (or run `gcloud config list`
+# on demand instead).
+disabled = true
+
+[kubernetes]
+symbol = "☸ "
+style = "bg:teal"
+format = '[[ $symbol$context( \($namespace\)) ](fg:crust bg:teal)]($style)'
+disabled = false
+detect_files = ["Chart.yaml", "kustomization.yaml", "skaffold.yaml"]
+detect_folders = ["k8s", "kubernetes", "manifests"]
+
+[helm]
+symbol = "⎈ "
+style = "bg:teal"
+format = '[[ $symbol($version ) ](fg:crust bg:teal)]($style)'
+disabled = false
+
+[claude_model]
+symbol = "🤖 "
+style = "bg:mauve"
+format = '[[ $symbol$model ](fg:crust bg:mauve)]($style)'
+disabled = false
+
+[claude_context]
+format = '[[$gauge $percentage ](fg:crust bg:mauve)]'
+disabled = false
+
+[claude_cost]
+symbol = "💰 "
+format = '[[$symbol(\$$cost) ](fg:crust bg:mauve)]'
+disabled = false
 
 [conda]
 symbol = "  "
