@@ -4,9 +4,10 @@
 # (https://github.com/mathiasbynens/dotfiles/blob/main/.macos), which this
 # file was originally partly based on back in 2013. Kept everything except
 # tweaks for apps not in use: Sublime Text, Twitter.app, Opera & Opera
-# Developer, Tweetbot.app. AI tools (Claude/ChatGPT/Cursor/opencode) have no
-# equivalent here - they store settings in their own JSON config files, not
-# macOS's `defaults` preference-domain system this script operates on.
+# Developer, Tweetbot.app, Transmission.app. AI tools (Claude/ChatGPT/Cursor/
+# opencode) have no equivalent here - they store settings in their own JSON
+# config files, not macOS's `defaults` preference-domain system this script
+# operates on.
 #
 # This is optional and not run automatically by any install script - review
 # before running, some of these are opinionated. `sh etc/osx.sh`
@@ -874,42 +875,6 @@ defaults write com.irradiatedsoftware.SizeUp ShowPrefsOnNextStart -bool false
 cp -r init/spectacle.json ~/Library/Application\ Support/Spectacle/Shortcuts.json 2> /dev/null
 
 ###############################################################################
-# Transmission.app                                                            #
-###############################################################################
-
-
-# Use `~/Documents/Torrents` to store incomplete downloads
-defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
-defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Documents/Torrents"
-
-# Use `~/Downloads` to store completed downloads
-defaults write org.m0k.transmission DownloadLocationConstant -bool true
-
-# Don’t prompt for confirmation before downloading
-defaults write org.m0k.transmission DownloadAsk -bool false
-defaults write org.m0k.transmission MagnetOpenAsk -bool false
-
-# Don’t prompt for confirmation before removing non-downloading active transfers
-defaults write org.m0k.transmission CheckRemoveDownloading -bool true
-
-# Trash original torrent files
-defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
-
-# Hide the donate message
-defaults write org.m0k.transmission WarningDonate -bool false
-# Hide the legal disclaimer
-defaults write org.m0k.transmission WarningLegal -bool false
-
-# IP block list.
-# Source: https://giuliomac.wordpress.com/2014/02/19/best-blocklist-for-transmission/
-defaults write org.m0k.transmission BlocklistNew -bool true
-defaults write org.m0k.transmission BlocklistURL -string "http://john.bitsurge.net/public/biglist.p2p.gz"
-defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
-
-# Randomize port on launch
-defaults write org.m0k.transmission RandomPort -bool true
-
-###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
@@ -931,7 +896,6 @@ for app in "Activity Monitor" \
 	"Spectacle" \
 	"SystemUIServer" \
 	"Terminal" \
-	"Transmission" \
 	"iCal"; do
 	killall "${app}" &> /dev/null
 done
