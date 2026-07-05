@@ -9,16 +9,18 @@ curl --silent https://raw.githubusercontent.com/hari-tw/dotfiles/master/install.
 
 ## Additional steps
 * Install XCode & its Command Line Tools.
-* Install "Source Code Pro" font from fonts folder.
 * Install trash command `brew install trash`
-* Copy Sublime Text icon in sublime folder into Get Info modal of Sublime Text application ([credit](https://dribbble.com/shots/1840393-Sublime-Text-Yosemite-Icon?list=searches&tag=sublime_text))
+* Install a [Nerd Font](https://www.nerdfonts.com/) (`brew install --cask font-jetbrains-mono-nerd-font`) and set it in your terminal(s) — required for the prompt/`eza` icons. In font pickers, search for **`JetBrainsMono Nerd Font Mono`** (no space between "JetBrains" and "Mono" — that's the actual registered family name; "JetBrains Mono Nerd Font" finds nothing).
+* **iTerm2:** import `terminal/catppuccin/catppuccin-mocha.itermcolors` (Settings → Profiles → Colors → Color Presets → Import) and apply it to your profile.
+* **Warp:** the Catppuccin theme files are symlinked into `~/.warp/themes/` automatically by `symlink-dotfiles.sh` — select "Catppuccin Mocha" in Settings → Appearance → Themes. Then, **before** expecting Starship to show up: Settings → Appearance → Prompt → set Input type to `Shell Prompt (PS1)` — Warp defaults to its own built-in prompt, which silently replaces Starship's output entirely (not just missing icons).
 * If git modules failed to download, run:
 ```
 git submodule update --init --recursive
 ```
 
 ## For new computer
-* Run `sh bootstrap-new-system.sh`
+* On a completely fresh Mac (no Xcode CLT/Homebrew yet), run `sh bootstrap-new-system.sh` — it installs Xcode CLT and Homebrew if missing, clones this repo, symlinks it, and runs `brew bundle install`.
+* If Homebrew's already set up, `curl --silent .../install.sh | sh` (see top of this README) + `brew bundle install --file=Brewfile` covers the same ground.
 * Insert proper hosts from `etc/hosts` to system’s `/etc/hosts`.
 
 ## Features
@@ -29,13 +31,13 @@ git submodule update --init --recursive
 
 Shell (zsh):
 
-* **NO DEPENDENCIES!**
+* Catppuccin Mocha theme (iTerm2, Warp, and the Starship prompt, all matched) — other flavors in `terminal/catppuccin/` and `terminal/catppuccin-warp/`
+* Modern CLI tooling: `ls`/`ll`/`la` → `eza`, `cat` → `bat`, `cd` → zoxide-enhanced, `fzf`-powered Ctrl+R/Ctrl+T (installed via `Brewfile`)
 * Auto-completion
 * Syntax highlighting
 * Automatic setting up of terminal tab / window title to current dir
 * `rm` moves file to the OS X trash
 * A bunch of useful functions:
-    * `extract archive.tar.bz` — unpack any archive (supports many extensions)
     * `ram safari` — show app RAM usage
     * `openfiles` — real-time disk usage monitoring with `dtrace`.
     * `loc py coffee js html css` — count lines of code
@@ -57,12 +59,11 @@ Shell (zsh):
   [homeshick](https://github.com/andsens/homeshick)-compatible
 
 ## Structure
-* `bin` — files that are symlinked to any directory with binaries in `$PATH`
+* `Brewfile` — everything installed via Homebrew; run `brew bundle install --file=Brewfile`
 * `etc` — various stuff like osx text substitutions / hosts backup
 * `git-extras` — useful git functions, defined in `home/gitconfig`. Don't forget to change your git author to a proper name.
 * `home` — files that are symlinked to `$HOME` directory
-* `sublime` — sublime text 2 theme & settings
-* `terminal` — terminal theme & prompt
+* `terminal` — terminal theme & prompt: `catppuccin/` (iTerm2 color schemes), `catppuccin-warp/` (Warp themes, symlinked into `~/.warp/themes/`), `starship.toml` (prompt config), plus completion/syntax-highlighting submodules
 
 
 ## License
