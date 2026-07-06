@@ -425,33 +425,9 @@ source '/opt/homebrew/opt/aws-sso-tools/bin/aws-sso.sh'
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
 # Claude Code profiles
-# Route through cmux's Claude Code wrapper when present (session restore,
-# Feed approvals, notifications) - $CMUX_CLAUDE_WRAPPER_SHIM is an exact,
-# PATH-order-independent path cmux exports at shell startup, so this works
-# regardless of where its temp shim dir lands relative to /opt/homebrew/bin
-# in $PATH. Falls back to the real binary everywhere else (Warp, iTerm2).
-_claude_dispatch() {
-  if [[ -n "${CMUX_CLAUDE_WRAPPER_SHIM:-}" && -x "${CMUX_CLAUDE_WRAPPER_SHIM}" ]]; then
-    "$CMUX_CLAUDE_WRAPPER_SHIM" "$@"
-  else
-    command claude "$@"
-  fi
-}
-claude-personal() { CLAUDE_CONFIG_DIR=~/.claude-personal _claude_dispatch "$@"; }
-claude-work() { CLAUDE_CONFIG_DIR=~/.claude-work _claude_dispatch "$@"; }
+alias claude-personal="CLAUDE_CONFIG_DIR=~/.claude-personal command claude"
+alias claude-work="CLAUDE_CONFIG_DIR=~/.claude-work command claude"
 
-# Disable bare `claude` to avoid accidental wrong-account usage. Terminals
-# like cmux install their own `claude` wrapper function on shell startup,
-# then re-install it again on the first prompt (a precmd hook) in case
-# later startup files changed it - which would silently undo this guard.
-# Re-win that race with our own one-shot precmd hook, registered after
-# cmux's so it runs second on the first prompt.
-claude() { echo 'Use claude-work or claude-personal'; }
-_reassert_claude_guard() {
-  unalias claude 2>/dev/null
-  claude() { echo 'Use claude-work or claude-personal'; }
-  add-zsh-hook -d precmd _reassert_claude_guard
-}
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd _reassert_claude_guard
+# Disable bare `claude` to avoid accidental wrong-account usage
+alias claude='echo "Use claude-work or claude-personal"'
 export PATH="$HOME/.local/bin:$PATH"
