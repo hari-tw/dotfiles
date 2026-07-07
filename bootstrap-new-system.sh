@@ -28,6 +28,15 @@ fi
 echo 'Symlinking dotfiles...'
 bash "$dotfiles/symlink-dotfiles.sh"
 
+# hashicorp/tap ships untrusted by default on a fresh Homebrew install -
+# `brew bundle install` auto-taps it (it's a `tap` line in the Brewfile) but
+# won't trust it, so the terraform formula line fails with "Refusing to load
+# ... from untrusted tap" and aborts that one install (the rest of the
+# bundle still proceeds). Tap it and trust just the one formula we use
+# ahead of time so it installs cleanly in the same run.
+brew tap hashicorp/tap
+brew trust --formula hashicorp/tap/terraform
+
 echo 'Installing packages from Brewfile (this takes a while)...'
 brew bundle install --file="$dotfiles/Brewfile"
 
