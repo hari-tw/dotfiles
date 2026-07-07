@@ -18,6 +18,15 @@
 [includeIf "gitdir:~/SideGigs/**"]
 	path = ~/.gitconfig-sidegigs
 
+# Homebrew taps are plain git repos too, cloned under a fixed system path
+# that doesn't match either folder above - so `brew tap xero-internal/tap`
+# (and any `brew update`/fetch on it afterward) would otherwise silently
+# fall through to the Personal key, which has zero access to that private
+# repo. Confirmed by checking core.sshCommand resolution inside the actual
+# tap directory before this was added - it resolved to Personal.
+[includeIf "gitdir:/opt/homebrew/Library/Taps/xero-internal/**"]
+	path = ~/.gitconfig-work
+
 [github]
   user = hari-tw
 
