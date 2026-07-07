@@ -2,8 +2,21 @@
 	name = Hari Balamani
 	email = prabhu.hari.b@gmail.com
 
+# Personal identity's own key. Must come before the includeIf blocks below -
+# git processes includeIf inline at its position in the file, so a
+# core.sshCommand set AFTER them (e.g. in the main [core] section further
+# down) would re-win and override whatever the include just set, every time.
+# -F /dev/null bypasses ~/.ssh/config's `Host github.com` block, which
+# otherwise silently wins even when a different -i is passed on the command
+# line (confirmed by testing directly).
+[core]
+	sshCommand = "ssh -F /dev/null -i ~/.ssh/id_ed25519_hari-tw -o IdentitiesOnly=yes -o UseKeychain=yes -o AddKeysToAgent=yes"
+
 [includeIf "gitdir:~/Projects/**"]
 	path = ~/.gitconfig-work
+
+[includeIf "gitdir:~/SideGigs/**"]
+	path = ~/.gitconfig-sidegigs
 
 [github]
   user = hari-tw

@@ -1,0 +1,4 @@
+[user]
+  email = REPLACE_ME
+[core]
+  sshCommand = "ssh -F /dev/null -i ~/.ssh/REPLACE_ME_KEY -o IdentitiesOnly=yes -o UseKeychain=yes -o AddKeysToAgent=yes"
