@@ -1,5 +1,4 @@
 tap "hashicorp/tap"
-tap "homebrew/services"
 tap "isen-ng/dotnet-sdk-versions"
 # Tool to safely and precisely provision, manage, and destroy infrastructure
 brew "hashicorp/tap/terraform"
@@ -59,16 +58,10 @@ brew "nvm"
 brew "ollama", restart_service: :changed
 # Cloud native development platform
 brew "pulumi"
-# Python version management
+# Python version management - sole source of Python versions, no brew
+# python@X.Y formulae (none were used as dependencies by anything else
+# installed - pyenv install <version> && pyenv global <version> instead)
 brew "pyenv"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.11"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.12"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.13"
 # Ruby version manager
 brew "rbenv"
 # CLI proxy to minimize LLM token consumption
@@ -119,8 +112,6 @@ cask "dotnet-sdk"
 cask "isen-ng/dotnet-sdk-versions/dotnet-sdk8"
 # This cask follows releases from https://github.com/dotnet/core/tree/master
 cask "isen-ng/dotnet-sdk-versions/dotnet-sdk8-0-400", trusted: true
-# Launch builds and start simulators from your menu bar
-cask "expo-orbit"
 cask "font-jetbrains-mono-nerd-font"
 # Set of tools to manage resources and applications hosted on Google Cloud
 cask "gcloud-cli"
