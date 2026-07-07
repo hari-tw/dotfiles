@@ -53,8 +53,10 @@ Bootstrap complete. Manual steps still needed:
     apply it to your profile (Settings > Profiles > Colors > Color Presets)
   - Restore SSH keys, home/.gitconfig-work, and shell history from your
     private backup (never stored in this repo)
-  - brew tap xero-internal/tap && brew install aws-sso-tools, then set up
-    AWS SSO profiles and Kubernetes contexts from scratch
+  - brew tap xero-internal/tap git@github.com:xero-internal/homebrew-tap.git
+    && brew install aws-sso-tools (the explicit SSH URL is required - the
+    bare one-argument form defaults to HTTPS and fails), then set up AWS
+    SSO profiles and Kubernetes contexts from scratch
   - Insert entries from etc/hosts into /etc/hosts if needed
   - Optionally review and run etc/osx.sh for macOS defaults tweaks (uses sudo)
 EOF
