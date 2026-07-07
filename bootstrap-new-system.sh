@@ -28,14 +28,19 @@ fi
 echo 'Symlinking dotfiles...'
 bash "$dotfiles/symlink-dotfiles.sh"
 
-# hashicorp/tap ships untrusted by default on a fresh Homebrew install -
-# `brew bundle install` auto-taps it (it's a `tap` line in the Brewfile) but
-# won't trust it, so the terraform formula line fails with "Refusing to load
-# ... from untrusted tap" and aborts that one install (the rest of the
-# bundle still proceeds). Tap it and trust just the one formula we use
-# ahead of time so it installs cleanly in the same run.
+# hashicorp/tap and isen-ng/dotnet-sdk-versions both ship untrusted by
+# default on a fresh Homebrew install - `brew bundle install` auto-taps them
+# (they're `tap` lines in the Brewfile) but won't trust them, so their
+# formula/cask lines fail with "Refusing to load ... from untrusted tap" and
+# abort just those installs (the rest of the bundle still proceeds). Tap and
+# trust exactly what we use ahead of time so everything installs cleanly in
+# the same run.
 brew tap hashicorp/tap
 brew trust --formula hashicorp/tap/terraform
+
+brew tap isen-ng/dotnet-sdk-versions
+brew trust --cask isen-ng/dotnet-sdk-versions/dotnet-sdk8
+brew trust --cask isen-ng/dotnet-sdk-versions/dotnet-sdk8-0-400
 
 echo 'Installing packages from Brewfile (this takes a while)...'
 brew bundle install --file="$dotfiles/Brewfile"
