@@ -388,7 +388,14 @@ compinit
 source /opt/homebrew/opt/git-extras/share/git-extras/git-extras-completion.zsh
 
 export NVM_DIR=~/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+# Homebrew's nvm formula doesn't populate ~/.nvm/nvm.sh - it lives in the
+# Cellar. Fall back to that if the conventional path isn't there (e.g. a
+# fresh machine that only ever ran `brew install nvm`).
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  . "$NVM_DIR/nvm.sh"
+elif command -v brew >/dev/null 2>&1 && [ -s "$(brew --prefix nvm 2>/dev/null)/nvm.sh" ]; then
+  . "$(brew --prefix nvm)/nvm.sh"
+fi
 
 # place this after nvm initialization!
 autoload -U add-zsh-hook
@@ -419,7 +426,7 @@ path+=('/Applications/Rider.app/Contents/MacOS')
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 
-source '/opt/homebrew/opt/aws-sso-tools/bin/aws-sso.sh'
+[[ -f '/opt/homebrew/opt/aws-sso-tools/bin/aws-sso.sh' ]] && source '/opt/homebrew/opt/aws-sso-tools/bin/aws-sso.sh'
 
 # Added by Antigravity
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"

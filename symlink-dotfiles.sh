@@ -5,6 +5,12 @@ cd "$dotfiles"
 
 echo "Symlinking dotfiles from $dotfiles"
 
+# In case this repo was cloned without --recursive (e.g. a plain `git clone`
+# before running this script) - terminal/completion and terminal/highlight
+# are submodules and show up as empty directories otherwise, breaking
+# .zshrc's `source terminal/highlight.sh`.
+git submodule update --init --recursive
+
 link() {
   from="$1"
   to="$2"
