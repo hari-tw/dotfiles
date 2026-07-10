@@ -1,4 +1,5 @@
 tap "hashicorp/tap"
+tap "int128/kubelogin"
 tap "isen-ng/dotnet-sdk-versions"
 # Tool to safely and precisely provision, manage, and destroy infrastructure
 brew "hashicorp/tap/terraform"
@@ -50,6 +51,9 @@ brew "k6"
 brew "kubectx"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
+# kubectl plugin for OIDC authentication (Xero PaaS K8s clusters use Okta
+# SSO + OIDC, not AWS IAM tokens - see MAC_MIGRATION.md Step 5a)
+brew "int128/kubelogin/kubelogin"
 # Version of the SSL/TLS protocol forked from OpenSSL
 brew "libressl"
 # Manage multiple Node.js versions
