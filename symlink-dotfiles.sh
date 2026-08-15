@@ -31,3 +31,7 @@ for theme in "$dotfiles"/terminal/catppuccin-warp/*.yml; do
   link "$theme" "$HOME/.warp/themes/$(basename "$theme")"
 done
 
+# Ghostty reads its config from ~/.config/ghostty, not $HOME directly.
+mkdir -p "$HOME/.config/ghostty"
+link "$dotfiles/terminal/ghostty/config" "$HOME/.config/ghostty/config"
+
