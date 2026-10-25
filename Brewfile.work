@@ -1,0 +1,42 @@
+# Office (Xero) machine extras - installed on top of Brewfile only by
+# `bootstrap-new-system.sh --work`, or by hand:
+#   brew bundle install --file=Brewfile.work
+tap "hashicorp/tap"
+tap "int128/kubelogin"
+tap "isen-ng/dotnet-sdk-versions"
+# Tool to safely and precisely provision, manage, and destroy infrastructure
+brew "hashicorp/tap/terraform"
+# AWS Cloud Development Kit - framework for defining AWS infra as code
+brew "aws-cdk"
+# Official Amazon AWS command-line interface
+brew "awscli"
+# Kubernetes package manager
+brew "helm"
+# Little helper to run CNCF's k3s in Docker
+brew "k3d"
+# Modern load testing tool, using Go and JavaScript
+brew "k6"
+# Tool that can switch between kubectl contexts easily and create aliases
+brew "kubectx"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
+# kubectl plugin for OIDC authentication (Xero PaaS K8s clusters use Okta
+# SSO + OIDC, not AWS IAM tokens - see MAC_MIGRATION.md Step 5a)
+brew "int128/kubelogin/kubelogin"
+# Cloud native development platform
+brew "pulumi"
+# Tail multiple Kubernetes pods & their containers
+brew "stern"
+# Web debugging Proxy application
+cask "charles"
+# Developer platform
+cask "dotnet-sdk"
+# This cask follows releases from https://github.com/dotnet/core/tree/master
+cask "isen-ng/dotnet-sdk-versions/dotnet-sdk8"
+# This cask follows releases from https://github.com/dotnet/core/tree/master
+cask "isen-ng/dotnet-sdk-versions/dotnet-sdk8-0-400", trusted: true
+# .NET IDE
+cask "rider"
+# Team communication and collaboration software
+cask "slack"
+vscode "ms-kubernetes-tools.vscode-kubernetes-tools"

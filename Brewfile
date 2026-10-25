@@ -1,12 +1,5 @@
-tap "hashicorp/tap"
-tap "int128/kubelogin"
-tap "isen-ng/dotnet-sdk-versions"
-# Tool to safely and precisely provision, manage, and destroy infrastructure
-brew "hashicorp/tap/terraform"
-# AWS Cloud Development Kit - framework for defining AWS infra as code
-brew "aws-cdk"
-# Official Amazon AWS command-line interface
-brew "awscli"
+# Shared by every machine (personal + office). Office-only extras live in
+# Brewfile.work.
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Statistics utility to count lines of code
@@ -37,31 +30,16 @@ brew "git-extras"
 brew "git-lfs"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
-# Kubernetes package manager
-brew "helm"
 # Client library for huggingface.co hub
 brew "hf"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
-# Little helper to run CNCF's k3s in Docker
-brew "k3d"
-# Modern load testing tool, using Go and JavaScript
-brew "k6"
-# Tool that can switch between kubectl contexts easily and create aliases
-brew "kubectx"
-# Kubernetes command-line interface
-brew "kubernetes-cli"
-# kubectl plugin for OIDC authentication (Xero PaaS K8s clusters use Okta
-# SSO + OIDC, not AWS IAM tokens - see MAC_MIGRATION.md Step 5a)
-brew "int128/kubelogin/kubelogin"
 # Version of the SSL/TLS protocol forked from OpenSSL
 brew "libressl"
 # Manage multiple Node.js versions
 brew "nvm"
 # Create, run, and share large language models (LLMs)
 brew "ollama", restart_service: :changed
-# Cloud native development platform
-brew "pulumi"
 # Python version management - sole source of Python versions, no brew
 # python@X.Y formulae (none were used as dependencies by anything else
 # installed - pyenv install <version> && pyenv global <version> instead)
@@ -74,8 +52,6 @@ brew "rtk"
 brew "rust"
 # Cross-shell prompt for astronauts
 brew "starship"
-# Tail multiple Kubernetes pods & their containers
-brew "stern"
 # Scripting with easy zero-conf dependency imports
 brew "swift-sh"
 # Tool to enforce Swift style and conventions
@@ -98,10 +74,10 @@ cask "arc"
 cask "brave-browser"
 # Open source IDE for exploring and testing APIs
 cask "bruno"
-# Web debugging Proxy application
-cask "charles"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
+# Anthropic's official Claude AI desktop app
+cask "claude"
 # Terminal-based AI coding assistant
 cask "claude-code"
 # Write, edit, and chat about your code with AI
@@ -110,15 +86,11 @@ cask "cursor"
 cask "docker"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
-# Developer platform
-cask "dotnet-sdk"
-# This cask follows releases from https://github.com/dotnet/core/tree/master
-cask "isen-ng/dotnet-sdk-versions/dotnet-sdk8"
-# This cask follows releases from https://github.com/dotnet/core/tree/master
-cask "isen-ng/dotnet-sdk-versions/dotnet-sdk8-0-400", trusted: true
 cask "font-jetbrains-mono-nerd-font"
 # Set of tools to manage resources and applications hosted on Google Cloud
 cask "gcloud-cli"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
 # Desktop client for GitHub repositories
 cask "github"
 # Terminal emulator as alternative to Apple's Terminal app
@@ -127,10 +99,6 @@ cask "iterm2"
 cask "monitorcontrol"
 # Reverse proxy, secure introspectable tunnels to localhost
 cask "ngrok"
-# .NET IDE
-cask "rider"
-# Team communication and collaboration software
-cask "slack"
 # Open-source code editor
 cask "visual-studio-code"
 # Rust-based terminal
@@ -142,7 +110,6 @@ vscode "mathematic.vscode-latex"
 vscode "mechatroner.rainbow-csv"
 vscode "ms-azuretools.vscode-containers"
 vscode "ms-azuretools.vscode-docker"
-vscode "ms-kubernetes-tools.vscode-kubernetes-tools"
 vscode "ms-vscode-remote.remote-containers"
 vscode "ms-vscode.makefile-tools"
 vscode "orta.vscode-jest"

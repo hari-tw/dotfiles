@@ -19,8 +19,8 @@ git submodule update --init --recursive
 ```
 
 ## For new computer
-* On a completely fresh Mac (no Xcode CLT/Homebrew yet), run `sh bootstrap-new-system.sh` — it installs Xcode CLT and Homebrew if missing, clones this repo, symlinks it, and runs `brew bundle install`.
-* If Homebrew's already set up, `curl --silent .../install.sh | sh` (see top of this README) + `brew bundle install --file=Brewfile` covers the same ground.
+* On a completely fresh Mac (no Xcode CLT/Homebrew yet), run `sh bootstrap-new-system.sh`. It installs Xcode CLT and Homebrew if missing, clones this repo, symlinks it, and runs `brew bundle install`. On an office machine add `--work` to also install `Brewfile.work`.
+* If Homebrew's already set up, `curl --silent .../install.sh | sh` (see top of this README) + `brew bundle install --file=Brewfile` covers the same ground. Add `--file=Brewfile.work` on an office machine.
 * Insert proper hosts from `etc/hosts` to system’s `/etc/hosts`.
 
 ## Features
@@ -76,7 +76,8 @@ Why cloud/conda/claude share one segment instead of three: each segment's transi
 `command_timeout` is bumped to 1000ms (Starship's default 500ms is too aggressive — `helm version` alone can exceed it and render blank).
 
 ## Structure
-* `Brewfile` — everything installed via Homebrew; run `brew bundle install --file=Brewfile`
+* `Brewfile` lists what every machine gets: shell tooling, languages, personal-project stack and apps. Run `brew bundle install --file=Brewfile`
+* `Brewfile.work` lists office-only extras: AWS, Kubernetes, .NET, Terraform/Pulumi, k6, Slack, Rider, Charles
 * `etc` — various stuff like osx text substitutions / hosts backup
 * `git-extras` — just `git-rstatus.sh` now (bespoke multi-repo status scanner); everything else comes from the real `git-extras` package via `Brewfile`. Don't forget to change your git author to a proper name.
 * `home` — files that are symlinked to `$HOME` directory
