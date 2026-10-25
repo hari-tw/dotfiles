@@ -438,3 +438,7 @@ alias claude-work="CLAUDE_CONFIG_DIR=~/.claude-work command claude"
 # Disable bare `claude` to avoid accidental wrong-account usage
 alias claude='echo "Use claude-work or claude-personal"'
 export PATH="$HOME/.local/bin:$PATH"
+
+# Machine-local secrets/overrides (API tokens etc.) - never committed, this
+# repo is public. Travels between machines via the migration bundle.
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
